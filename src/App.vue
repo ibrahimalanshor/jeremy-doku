@@ -13,9 +13,9 @@
     <div class="max-w-4xl mx-auto">
       <div class="w-3/4 mx-auto text-center">
         <h1 class="text-4xl font-bold tracking-tight mb-2">
-          Komunitas Air Hujan
+          Sekolah Air Hujan
         </h1>
-        <p class="text-lg mb-4">
+        <p class="text-base mb-4">
           Bersama memanfaatkan air hujan menjadi sesuatu yang lebih bermanfaat
         </p>
         <input
@@ -27,4 +27,24 @@
       </div>
     </div>
   </header>
+  <div class="max-w-4xl mx-auto py-20 space-y-6">
+    <div class="border-b border-gray-200 pb-6">
+      <h3 class="text-base font-semibold leading-6 text-gray-900">
+        Job Postings
+      </h3>
+    </div>
+    <div class="grid grid-cols-3 gap-6">
+      <div v-for="x in 6" :key="x" class="border rounded-xl">
+        <div class="bg-gray-100 rounded-t-xl h-[150px]"></div>
+        <div class="rounded-b-xl p-4">
+          <p class="text-xs text-gray-500 mb-1">Arsenal</p>
+          <a href="" class="font-bold text-base block mb-2">Bad Boy</a>
+          <p class="text-sm text-gray-700 leading-6">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
+            voluptatibus minima repellendus.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
