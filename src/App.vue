@@ -1,14 +1,9 @@
+<script setup>
+import AppNavbar from 'src/components/app/app-navbar.vue';
+</script>
+
 <template>
-  <div class="py-4 fixed top-0 left-0 w-full">
-    <div class="max-w-4xl mx-auto flex items-center justify-between">
-      <a href="" class="text-white text-base font-bold">Home</a>
-      <ul class="flex items-center gap-x-8">
-        <li><a href="" class="text-white text-sm">Komunitas</a></li>
-        <li><a href="" class="text-white text-sm">Events</a></li>
-        <li><a href="" class="text-white text-sm">Masuk / Daftar</a></li>
-      </ul>
-    </div>
-  </div>
+  <app-navbar />
   <header class="bg-sky-600 header text-white py-40">
     <div class="max-w-4xl mx-auto">
       <div class="w-3/4 mx-auto text-center">
