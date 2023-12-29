@@ -3,9 +3,9 @@
     <div class="max-w-4xl mx-auto flex items-center justify-between">
       <a href="" class="text-white text-base font-bold">Home</a>
       <ul class="flex items-center gap-x-8">
-        <li><a href="" class="text-white text-sm">About</a></li>
-        <li><a href="" class="text-white text-sm">Cabang</a></li>
-        <li><a href="" class="text-white text-sm">Masuk Sebagai Cabang</a></li>
+        <li><a href="" class="text-white text-sm">Komunitas</a></li>
+        <li><a href="" class="text-white text-sm">Events</a></li>
+        <li><a href="" class="text-white text-sm">Masuk / Daftar</a></li>
       </ul>
     </div>
   </div>
@@ -59,7 +59,7 @@
       class="border-b border-gray-200 pb-6 flex items-center justify-between"
     >
       <h3 class="text-base font-semibold leading-6 text-gray-900">
-        Aktifitas Terbaru
+        Events Terbaru
       </h3>
       <a
         href=""
