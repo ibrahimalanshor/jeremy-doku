@@ -81,4 +81,9 @@
       </div>
     </div>
   </div>
+  <div class="bg-neutral-900 text-white py-4">
+    <div class="max-w-4xl mx-auto text-center text-sm font-bold">
+      Sekolah Hujan
+    </div>
+  </div>
 </template>
