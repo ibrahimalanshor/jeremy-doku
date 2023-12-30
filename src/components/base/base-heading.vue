@@ -4,16 +4,19 @@ import { computed } from 'vue';
 const props = defineProps({
   size: String,
   color: String,
+  tight: Boolean,
 });
 
 const tag = computed(() => {
   return {
-    small: 'h6',
+    '4xl': 'h1',
+    md: 'h6',
   }[props.size];
 });
 const size = computed(() => {
   return {
-    small: 'text-base',
+    '4xl': 'text-4xl',
+    md: 'text-base',
   }[props.size];
 });
 const color = computed(() => {
@@ -24,7 +27,10 @@ const color = computed(() => {
 </script>
 
 <template>
-  <component :is="tag" :class="[size, color, 'font-bold']">
+  <component
+    :is="tag"
+    :class="[size, color, 'font-bold', tight && 'tracking-tight']"
+  >
     <slot />
   </component>
 </template>

@@ -1,23 +1,22 @@
 <script setup>
 import BaseContainer from 'src/components/base/base-container.vue';
+import BaseHeading from 'src/components/base/base-heading.vue';
+import BaseInput from 'src/components/base/base-input.vue';
+import BaseLink from 'src/components/base/base-link.vue';
 </script>
 
 <template>
   <header class="bg-sky-600 header text-white py-40">
     <base-container>
       <div class="w-3/4 mx-auto text-center">
-        <h1 class="text-4xl font-bold tracking-tight mb-2">
-          Sekolah Air Hujan
-        </h1>
+        <base-heading class="mb-2" size="4xl" tight
+          >Sekolah Air Hujan</base-heading
+        >
         <p class="text-base mb-4">
           Bersama memanfaatkan air hujan menjadi sesuatu yang lebih bermanfaat
         </p>
-        <input
-          type="search"
-          class="mb-2 px-3.5 py-2.5 w-full border-0 rounded-xl focus:outline-0 focus:ring-0 text-gray-700 text-sm leading-0"
-          placeholder="Cari Cabang Komunitas"
-        />
-        <a href="" class="text-xs text-white">Lihat Semua Cabang</a>
+        <base-input class="mb-2" size="lg" no-outline />
+        <base-link size="xs">Lihat Semua Cabang</base-link>
       </div>
     </base-container>
   </header>
