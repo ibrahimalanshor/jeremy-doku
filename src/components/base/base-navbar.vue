@@ -1,11 +1,14 @@
 <script setup>
 import BaseContainer from './base-container.vue';
+import BaseHeading from './base-heading.vue';
+import BaseLink from './base-link.vue';
 
 defineProps({
   navs: {
     type: Array,
     required: true,
   },
+  homeText: String,
 });
 </script>
 
@@ -13,10 +16,12 @@ defineProps({
   <div class="py-4 fixed top-0 left-0 w-full">
     <base-container>
       <div class="flex items-center justify-between">
-        <a href="" class="text-white text-base font-bold">Home</a>
+        <base-link>
+          <base-heading color="white" size="small">{{ homeText }}</base-heading>
+        </base-link>
         <ul class="flex items-center gap-x-8">
           <li v-for="nav in navs" :key="nav.id">
-            <a href="" class="text-white text-sm">{{ nav.name }}</a>
+            <base-link color="white">{{ nav.name }}</base-link>
           </li>
         </ul>
       </div>

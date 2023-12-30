@@ -4,6 +4,7 @@ import BaseNavbar from 'src/components/base/base-navbar.vue';
 
 <template>
   <base-navbar
+    home-text="Home"
     :navs="[
       { id: 'comunities', name: 'Komunitas' },
       { id: 'events', name: 'Events' },

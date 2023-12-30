@@ -1,9 +1,9 @@
 <script setup>
-import AppNavbar from 'src/components/app/app-navbar.vue';
+import LandingNavbar from 'src/components/landing/landing-navbar.vue';
 </script>
 
 <template>
-  <app-navbar />
+  <landing-navbar />
   <header class="bg-sky-600 header text-white py-40">
     <div class="max-w-4xl mx-auto">
       <div class="w-3/4 mx-auto text-center">
