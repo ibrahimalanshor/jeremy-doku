@@ -3,6 +3,7 @@ import LandingNavbar from 'src/components/landing/landing-navbar.vue';
 import LandingHeader from 'src/components/landing/landing-header.vue';
 import BaseHeading from 'src/components/base/base-heading.vue';
 import BaseButton from 'src/components/base/base-button.vue';
+import BaseCard from 'src/components/base/base-card.vue';
 </script>
 
 <template>
@@ -16,17 +17,13 @@ import BaseButton from 'src/components/base/base-button.vue';
       <base-button size="md" color="white-bordered">Lihat Semua</base-button>
     </div>
     <div class="grid grid-cols-3 gap-6">
-      <div v-for="x in 6" :key="x" class="border rounded-xl">
-        <div class="bg-gray-100 rounded-t-xl h-[150px]"></div>
-        <div class="rounded-b-xl p-4">
-          <p class="text-xs text-gray-500 mb-1">Arsenal</p>
-          <a href="" class="font-bold text-base block mb-2">Bad Boy</a>
-          <p class="text-sm text-gray-700 leading-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-            voluptatibus minima repellendus.
-          </p>
-        </div>
-      </div>
+      <base-card
+        v-for="x in 6"
+        :key="x"
+        subtitle="Sleman"
+        title="Banyu Bening"
+        description="Temukan aneka produk Pedal Wah Vox terlengkap yang dapat digunakan untuk berbagai macam brand"
+      />
     </div>
   </div>
   <div class="max-w-4xl mx-auto py-20 space-y-6">
