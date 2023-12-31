@@ -2,6 +2,7 @@
 import LandingNavbar from 'src/components/landing/landing-navbar.vue';
 import LandingHeader from 'src/components/landing/landing-header.vue';
 import BaseHeading from 'src/components/base/base-heading.vue';
+import BaseButton from 'src/components/base/base-button.vue';
 </script>
 
 <template>
@@ -12,11 +13,7 @@ import BaseHeading from 'src/components/base/base-heading.vue';
       class="border-b border-gray-200 pb-6 flex items-center justify-between"
     >
       <base-heading size="md" weight="semibold">Top Komunitas</base-heading>
-      <a
-        href=""
-        class="px-3 py-1.5 border border-gray-200 bg-white text-gray-900 text-sm rounded-md"
-        >Lihat Semua</a
-      >
+      <base-button size="md" color="white-bordered">Lihat Semua</base-button>
     </div>
     <div class="grid grid-cols-3 gap-6">
       <div v-for="x in 6" :key="x" class="border rounded-xl">
