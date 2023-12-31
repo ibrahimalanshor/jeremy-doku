@@ -17,7 +17,9 @@ defineProps({
     <base-container>
       <div class="flex items-center justify-between">
         <base-link size="sm">
-          <base-heading color="white" size="md">{{ homeText }}</base-heading>
+          <base-heading weight="semibold" color="white" size="md">{{
+            homeText
+          }}</base-heading>
         </base-link>
         <ul class="flex items-center gap-x-8">
           <li v-for="nav in navs" :key="nav.id">

@@ -5,6 +5,7 @@ const props = defineProps({
   size: String,
   color: String,
   tight: Boolean,
+  weight: String,
 });
 
 const tag = computed(() => {
@@ -24,12 +25,18 @@ const color = computed(() => {
     white: 'text-white',
   }[props.color];
 });
+const weight = computed(() => {
+  return {
+    bold: 'font-bold',
+    semibold: 'font-semibold',
+  }[props.weight];
+});
 </script>
 
 <template>
   <component
     :is="tag"
-    :class="[size, color, 'font-bold', tight && 'tracking-tight']"
+    :class="[size, color, weight, tight && 'tracking-tight']"
   >
     <slot />
   </component>

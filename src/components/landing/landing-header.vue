@@ -9,7 +9,7 @@ import BaseLink from 'src/components/base/base-link.vue';
   <header class="bg-sky-600 header text-white py-40">
     <base-container>
       <div class="w-3/4 mx-auto text-center">
-        <base-heading class="mb-2" size="4xl" tight
+        <base-heading weight="bold" class="mb-2" size="4xl" tight
           >Sekolah Air Hujan</base-heading
         >
         <p class="text-base mb-4">

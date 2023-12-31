@@ -1,6 +1,7 @@
 <script setup>
 import LandingNavbar from 'src/components/landing/landing-navbar.vue';
 import LandingHeader from 'src/components/landing/landing-header.vue';
+import BaseHeading from 'src/components/base/base-heading.vue';
 </script>
 
 <template>
@@ -10,9 +11,7 @@ import LandingHeader from 'src/components/landing/landing-header.vue';
     <div
       class="border-b border-gray-200 pb-6 flex items-center justify-between"
     >
-      <h3 class="text-base font-semibold leading-6 text-gray-900">
-        Top Komunitas
-      </h3>
+      <base-heading size="md" weight="semibold">Top Komunitas</base-heading>
       <a
         href=""
         class="px-3 py-1.5 border border-gray-200 bg-white text-gray-900 text-sm rounded-md"
