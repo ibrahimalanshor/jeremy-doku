@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header {
+  background-image: url('https://www.transparenttextures.com/patterns/bright-squares.png');
+}
