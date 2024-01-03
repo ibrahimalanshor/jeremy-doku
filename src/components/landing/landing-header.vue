@@ -6,7 +6,7 @@ import BaseLink from 'src/components/base/base-link.vue';
 </script>
 
 <template>
-  <header class="bg-sky-600 header text-white py-40">
+  <header id="header" class="bg-sky-600 with-pattern text-white py-40">
     <base-container>
       <div class="w-3/4 mx-auto text-center">
         <base-heading weight="bold" class="mb-2" size="4xl" tight

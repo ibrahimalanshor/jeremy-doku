@@ -10,10 +10,24 @@ defineProps({
   },
   homeText: String,
 });
+
+window.addEventListener('scroll', (e) => {
+  const header = document.querySelector('#header');
+  const navbar = document.querySelector('#navbar');
+
+  if (
+    navbar.clientHeight + document.documentElement.scrollTop >
+    header.clientHeight
+  ) {
+    navbar.classList.add('bg-sky-600', 'with-pattern');
+  } else {
+    navbar.classList.remove('bg-sky-600', 'with-pattern');
+  }
+});
 </script>
 
 <template>
-  <div class="py-4 fixed top-0 left-0 w-full">
+  <div id="navbar" class="py-4 fixed top-0 left-0 w-full">
     <base-container>
       <div class="flex items-center justify-between">
         <base-link size="sm">
