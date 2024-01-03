@@ -3,12 +3,19 @@ defineProps({
   subtitle: String,
   title: String,
   description: String,
+  image: String,
 });
 </script>
 
 <template>
   <div class="border rounded-xl">
-    <div class="bg-gray-100 rounded-t-xl h-[150px]"></div>
+    <div class="bg-gray-100 rounded-t-xl h-[150px]">
+      <img
+        v-if="image"
+        :src="image"
+        class="w-full h-full object-cover rounded-t-xl"
+      />
+    </div>
     <div class="rounded-b-xl p-4">
       <p class="text-xs text-gray-500 mb-1">{{ subtitle }}</p>
       <a href="" class="font-bold text-base block mb-2">{{ title }}</a>
