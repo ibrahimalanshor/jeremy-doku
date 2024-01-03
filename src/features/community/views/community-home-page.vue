@@ -1,6 +1,5 @@
 <script setup>
 import BaseHeading from 'src/components/base/base-heading.vue';
-import BaseButton from 'src/components/base/base-button.vue';
 import BaseSectionHeading from 'src//components/base/base-section-heading.vue';
 import BaseContainer from 'src/components/base/base-container.vue';
 import CommunityCardList from 'src/features/community/components/community-card-list.vue';
@@ -14,13 +13,8 @@ import LayoutLanding from 'src/components/layouts/layout-landing.vue';
         <template #start>
           <base-heading size="md" weight="semibold">Top Komunitas</base-heading>
         </template>
-        <template #end>
-          <base-button size="md" color="white-bordered"
-            >Lihat Semua</base-button
-          >
-        </template>
       </base-section-heading>
-      <community-card-list />
+      <community-card-list has-pagination />
     </base-container>
   </layout-landing>
 </template>
