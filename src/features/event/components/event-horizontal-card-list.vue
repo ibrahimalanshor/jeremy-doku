@@ -1,15 +1,35 @@
 <script setup>
 import BaseHorizontalCard from 'src/components/base/base-horizontal-card.vue';
+import { useRequest } from 'src/composes/request.compose';
+
+const { data: events, request } = useRequest('/api/events', {
+  initData: {
+    data: [],
+  },
+});
+
+async function loadEvents() {
+  try {
+    await request({
+      params: {
+        perPage: 5,
+      },
+    });
+  } catch (err) {}
+}
+
+loadEvents();
 </script>
 
 <template>
   <div class="grid grid-cols-1 gap-6">
     <base-horizontal-card
-      v-for="x in 5"
-      :key="x"
+      v-for="event in events.data"
+      :key="event"
       subtitle="Sleman"
-      title="Banyu Bening"
-      description="Temukan aneka produk Pedal Wah Vox terlengkap yang dapat digunakan untuk berbagai macam brand"
+      :image="event.image"
+      :title="event.name"
+      :description="event.description"
     />
   </div>
 </template>
