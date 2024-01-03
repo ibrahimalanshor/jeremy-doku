@@ -22,7 +22,7 @@ loadCommunities();
 </script>
 
 <template>
-  <div class="grid grid-cols-3 gap-6">
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
     <base-card
       v-for="community in communities.data"
       :key="community.id"

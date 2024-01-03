@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="border rounded-xl">
-    <div class="bg-gray-100 rounded-t-xl h-[150px]">
+    <div class="bg-gray-100 rounded-t-xl h-[200px] md:h-[150px]">
       <img
         v-if="image"
         :src="image"
