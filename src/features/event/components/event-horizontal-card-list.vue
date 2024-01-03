@@ -12,7 +12,7 @@ async function loadEvents() {
   try {
     await request({
       params: {
-        perPage: 5,
+        perPage: 6,
       },
     });
   } catch (err) {}
@@ -22,7 +22,7 @@ loadEvents();
 </script>
 
 <template>
-  <div class="grid grid-cols-1 gap-6">
+  <div class="grid sm:grid-cols-2 md:grid-cols-1 gap-6">
     <base-horizontal-card
       v-for="event in events.data"
       :key="event"

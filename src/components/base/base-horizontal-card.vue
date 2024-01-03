@@ -8,12 +8,14 @@ defineProps({
 </script>
 
 <template>
-  <div class="border rounded-xl flex">
-    <div class="bg-gray-100 rounded-l-xl w-[100px] h-full">
+  <div class="border rounded-xl md:flex">
+    <div
+      class="bg-gray-100 rounded-t-xl md:rounded-r-none md:rounded-l-xl h-[200px] md:w-[100px] md:max-h-[120px] md:h-full"
+    >
       <img
         v-if="image"
         :src="image"
-        class="w-full h-full object-cover rounded-l-xl"
+        class="w-full h-full object-cover rounded-t-xl md:rounded-r-none md:rounded-l-xl"
       />
     </div>
     <div class="rounded-b-xl p-4">
