@@ -4,6 +4,7 @@ import { computed } from 'vue';
 const props = defineProps({
   size: String,
   noOutline: Boolean,
+  placeholder: String,
 });
 
 const size = computed(() => {
@@ -21,6 +22,6 @@ const size = computed(() => {
       'w-full text-gray-700',
       noOutline && 'border-0 focus:outline-0 focus:ring-0',
     ]"
-    placeholder="Cari Cabang Komunitas"
+    :placeholder="placeholder"
   />
 </template>
