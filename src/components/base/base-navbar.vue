@@ -5,12 +5,16 @@ import BaseHeading from './base-heading.vue';
 import BaseLink from './base-link.vue';
 import { ref } from 'vue';
 
-defineProps({
+const props = defineProps({
   navs: {
     type: Array,
     required: true,
   },
   homeText: String,
+  hasHeader: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const navbarMobileVisible = ref(false);
@@ -19,26 +23,35 @@ function handleToggleNavbar() {
   navbarMobileVisible.value = !navbarMobileVisible.value;
 }
 
-window.addEventListener('scroll', (e) => {
-  const header = document.querySelector('#header');
-  const navbar = document.querySelector('#navbar');
+if (props.hasHeader) {
+  window.addEventListener('scroll', (e) => {
+    const header = document.querySelector('#header');
+    const navbar = document.querySelector('#navbar');
 
-  if (
-    navbar.clientHeight + document.documentElement.scrollTop >
-    header.clientHeight
-  ) {
-    navbar.classList.add('bg-sky-600', 'with-pattern');
-  } else {
-    navbar.classList.remove('bg-sky-600', 'with-pattern');
-  }
-});
+    if (
+      navbar.clientHeight + document.documentElement.scrollTop >
+      header.clientHeight
+    ) {
+      navbar.classList.add('bg-sky-600', 'with-pattern');
+    } else {
+      navbar.classList.remove('bg-sky-600', 'with-pattern');
+    }
+  });
+}
 </script>
 
 <template>
-  <div id="navbar" class="py-4 fixed top-0 left-0 w-full z-10">
+  <div
+    id="navbar"
+    :class="[
+      'py-4 top-0 left-0 w-full z-10',
+      hasHeader ? 'fixed' : 'sticky',
+      !hasHeader && 'bg-sky-600 with-pattern',
+    ]"
+  >
     <base-container>
       <div class="flex items-center justify-between flex-wrap gap-y-2">
-        <base-link size="sm">
+        <base-link size="sm" :to="{ name: 'home' }">
           <base-heading weight="semibold" color="white" size="md">{{
             homeText
           }}</base-heading>
@@ -59,7 +72,9 @@ window.addEventListener('scroll', (e) => {
           ]"
         >
           <li v-for="nav in navs" :key="nav.id">
-            <base-link size="sm" color="white">{{ nav.name }}</base-link>
+            <base-link size="sm" color="white" :to="nav.to">{{
+              nav.name
+            }}</base-link>
           </li>
         </ul>
       </div>

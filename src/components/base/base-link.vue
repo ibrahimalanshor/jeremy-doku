@@ -4,6 +4,7 @@ import { computed } from 'vue';
 const props = defineProps({
   color: String,
   size: String,
+  to: null,
 });
 
 const color = computed(() => {
@@ -20,5 +21,6 @@ const size = computed(() => {
 </script>
 
 <template>
-  <a href="" :class="[size, color]"><slot /></a>
+  <router-link v-if="to" :to="to" :class="[size, color]"><slot /></router-link>
+  <a v-else href="" :class="[size, color]"><slot /></a>
 </template>
