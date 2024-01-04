@@ -47,6 +47,7 @@ async function loadEvents() {
         perPage: 6,
         page: params.page,
         search: params.search,
+        includeCommunity: true,
       },
     });
   } catch (err) {}
@@ -95,11 +96,21 @@ loadEvents();
       <base-card
         v-for="event in events.data"
         :key="event.id"
-        subtitle="Sleman"
+        subtitle="Sabtu, 22 Mei 2024"
         :title="event.name"
-        :description="event.description"
         :image="event.image"
-      />
+        :has-description="false"
+      >
+        <template #subtitle="{ classes }">
+          <p :class="classes.subtitle">
+            {{ 'Sabtu, 22 Mei 2024 - 07:00 WIB' }}
+          </p>
+          <p :class="classes.subtitle">
+            {{ event.type }} - {{ event.location ?? 'Zoom' }}
+          </p>
+          <p :class="classes.subtitle">{{ event.community.name }}</p>
+        </template>
+      </base-card>
     </div>
     <div v-if="hasPagination" class="flex justify-center">
       <base-pagination

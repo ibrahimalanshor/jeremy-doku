@@ -95,7 +95,7 @@ loadCommunities();
       <base-card
         v-for="community in communities.data"
         :key="community.id"
-        subtitle="Sleman"
+        :subtitle="community.location"
         :title="community.name"
         :description="community.description"
         :image="community.image"
