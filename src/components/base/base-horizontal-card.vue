@@ -1,4 +1,7 @@
 <script setup>
+import BaseLink from './base-link.vue';
+import BaseHeading from './base-heading.vue';
+
 defineProps({
   subtitle: String,
   title: String,
@@ -8,6 +11,7 @@ defineProps({
     type: Boolean,
     default: true,
   },
+  to: null,
 });
 </script>
 
@@ -26,7 +30,11 @@ defineProps({
       <p v-if="hasSubtitle" class="text-xs text-gray-500 mb-1">
         {{ subtitle }}
       </p>
-      <a href="" class="font-bold text-base block mb-2">{{ title }}</a>
+      <base-link :to="to" underlined>
+        <base-heading size="md" weight="semibold" class="mb-2">{{
+          title
+        }}</base-heading>
+      </base-link>
       <slot name="description">
         <p class="text-sm text-gray-700 leading-6">{{ description }}</p>
       </slot>

@@ -6,11 +6,13 @@ const props = defineProps({
   size: String,
   to: null,
   underlined: Boolean,
+  href: null,
 });
 
 const color = computed(() => {
   return {
     white: 'text-white',
+    sky: 'text-sky-600',
   }[props.color];
 });
 const size = computed(() => {
@@ -28,7 +30,11 @@ const size = computed(() => {
     :class="[size, color, underlined && 'hover:underline']"
     ><slot
   /></router-link>
-  <a v-else href="" :class="[size, color, underlined && 'hover:underline']"
+  <a
+    v-else
+    :href="href"
+    target="_blank"
+    :class="[size, color, underlined && 'hover:underline']"
     ><slot
   /></a>
 </template>

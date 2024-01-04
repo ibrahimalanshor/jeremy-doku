@@ -29,6 +29,12 @@ export const routes = [
         name: 'events.home',
         component: () => import('src/features/event/views/event-home-page.vue'),
       },
+      {
+        path: ':id',
+        name: 'events.detail',
+        component: () =>
+          import('src/features/event/views/event-detail-page.vue'),
+      },
     ],
   },
 ];
