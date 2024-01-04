@@ -15,12 +15,7 @@ import BaseLink from 'src/components/base/base-link.vue';
         <p class="text-base mb-4">
           Bersama memanfaatkan air hujan menjadi sesuatu yang lebih bermanfaat
         </p>
-        <base-input
-          class="mb-2"
-          size="lg"
-          placeholder="Cari Komunitas"
-          no-outline
-        />
+        <base-input class="mb-2" size="lg" placeholder="Cari Komunitas" />
         <base-link size="xs">Lihat Semua Komunias</base-link>
       </div>
     </base-container>

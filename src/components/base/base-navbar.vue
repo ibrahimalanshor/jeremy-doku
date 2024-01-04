@@ -3,7 +3,7 @@ import { Bars4Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import BaseContainer from './base-container.vue';
 import BaseHeading from './base-heading.vue';
 import BaseLink from './base-link.vue';
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps({
   navs: {
@@ -19,15 +19,19 @@ const props = defineProps({
 
 const navbarMobileVisible = ref(false);
 
-function handleToggleNavbar() {
-  navbarMobileVisible.value = !navbarMobileVisible.value;
+function setScrollListener() {
+  window.removeEventListener('scroll', handleScroll, true);
+
+  if (props.hasHeader) {
+    window.addEventListener('scroll', handleScroll, true);
+  }
 }
 
-if (props.hasHeader) {
-  window.addEventListener('scroll', (e) => {
-    const header = document.querySelector('#header');
-    const navbar = document.querySelector('#navbar');
+function handleScroll() {
+  const header = document.querySelector('#header');
+  const navbar = document.querySelector('#navbar');
 
+  if (header && navbar) {
     if (
       navbar.clientHeight + document.documentElement.scrollTop >
       header.clientHeight
@@ -36,8 +40,15 @@ if (props.hasHeader) {
     } else {
       navbar.classList.remove('bg-sky-600', 'with-pattern');
     }
-  });
+  }
 }
+function handleToggleNavbar() {
+  navbarMobileVisible.value = !navbarMobileVisible.value;
+}
+
+onMounted(() => {
+  setScrollListener();
+});
 </script>
 
 <template>

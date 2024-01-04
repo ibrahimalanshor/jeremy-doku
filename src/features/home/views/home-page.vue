@@ -11,19 +11,15 @@ import LayoutLanding from 'src/components/layouts/layout-landing.vue';
 <template>
   <layout-landing>
     <base-container class="py-20 space-y-6">
-      <base-section-heading>
-        <template #start>
-          <base-heading size="md" weight="semibold">Top Komunitas</base-heading>
-        </template>
-        <template #end>
+      <community-card-list>
+        <template #header-end>
           <router-link :to="{ name: 'communities.home' }">
             <base-button size="md" color="white-bordered"
               >Lihat Semua</base-button
             >
           </router-link>
         </template>
-      </base-section-heading>
-      <community-card-list />
+      </community-card-list>
     </base-container>
     <base-container class="py-20 space-y-6">
       <base-section-heading>
