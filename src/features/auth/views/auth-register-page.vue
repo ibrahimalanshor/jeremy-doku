@@ -11,11 +11,12 @@ import BaseAlert from 'src/components/base/base-alert.vue';
 import { useRequest } from 'src/composes/request.compose';
 import { reactive } from 'vue';
 
-const { request } = useRequest('/api/login', {
+const { request } = useRequest('/api/register', {
   method: 'post',
 });
 
 const form = reactive({
+  name: null,
   email: null,
   password: null,
 });
@@ -59,7 +60,7 @@ function handleError(err) {
         <base-section-heading>
           <template #start>
             <base-heading size="md" weight="bold"
-              >Login ke akun komunitas</base-heading
+              >Daftar sebagai komunitas baru</base-heading
             >
           </template>
         </base-section-heading>
@@ -69,6 +70,17 @@ function handleError(err) {
             :message="error.message"
             color="red"
           />
+          <base-form-control label="Name">
+            <base-input
+              size="md"
+              bordered
+              outlined
+              color="sky"
+              placeholder="Name"
+              type="email"
+              v-model="form.name"
+            />
+          </base-form-control>
           <base-form-control label="Email">
             <base-input
               size="md"
@@ -76,7 +88,6 @@ function handleError(err) {
               outlined
               color="sky"
               placeholder="Email"
-              type="email"
               v-model="form.email"
             />
           </base-form-control>
@@ -93,9 +104,9 @@ function handleError(err) {
           </base-form-control>
           <base-button size="md" color="sky" fullwidth>Login</base-button>
           <p class="text-sm text-gray-600 text-center">
-            Belum punya akun?
-            <base-link :to="{ name: 'register' }" color="sky"
-              >Daftar Disini</base-link
+            Sudah punya akun?
+            <base-link :to="{ name: 'login' }" color="sky"
+              >Masuk Disini</base-link
             >
           </p>
         </form>

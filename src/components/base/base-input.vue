@@ -8,6 +8,10 @@ const props = defineProps({
   color: String,
   outlined: Boolean,
   modelValue: String,
+  type: {
+    type: String,
+    default: 'text',
+  },
 });
 const emit = defineEmits(['input', 'update:modelValue']);
 
@@ -38,7 +42,7 @@ function handleInput() {
 
 <template>
   <input
-    type="search"
+    :type="type"
     :class="[
       size,
       'w-full text-gray-700',
