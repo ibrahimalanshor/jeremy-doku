@@ -10,10 +10,12 @@ import BaseLink from 'src/components/base/base-link.vue';
 import BaseAlert from 'src/components/base/base-alert.vue';
 import { useRequest } from 'src/composes/request.compose';
 import { reactive } from 'vue';
+import { useAuthStore } from 'src/features/auth/stores/auth';
 
-const { request } = useRequest('/api/register', {
+const { request, data: result } = useRequest('/api/register', {
   method: 'post',
 });
+const authStore = useAuthStore();
 
 const form = reactive({
   name: null,
@@ -32,6 +34,8 @@ async function login() {
     await request({
       data: form,
     });
+
+    authStore.login(result.value);
   } catch (err) {
     handleError(err);
   }
@@ -77,7 +81,6 @@ function handleError(err) {
               outlined
               color="sky"
               placeholder="Name"
-              type="email"
               v-model="form.name"
             />
           </base-form-control>
@@ -88,6 +91,7 @@ function handleError(err) {
               outlined
               color="sky"
               placeholder="Email"
+              type="email"
               v-model="form.email"
             />
           </base-form-control>
