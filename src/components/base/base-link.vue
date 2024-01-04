@@ -5,6 +5,7 @@ const props = defineProps({
   color: String,
   size: String,
   to: null,
+  underlined: Boolean,
 });
 
 const color = computed(() => {
@@ -21,6 +22,13 @@ const size = computed(() => {
 </script>
 
 <template>
-  <router-link v-if="to" :to="to" :class="[size, color]"><slot /></router-link>
-  <a v-else href="" :class="[size, color]"><slot /></a>
+  <router-link
+    v-if="to"
+    :to="to"
+    :class="[size, color, underlined && 'hover:underline']"
+    ><slot
+  /></router-link>
+  <a v-else href="" :class="[size, color, underlined && 'hover:underline']"
+    ><slot
+  /></a>
 </template>

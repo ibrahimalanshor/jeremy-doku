@@ -11,12 +11,18 @@ const props = defineProps({
 const tag = computed(() => {
   return {
     '4xl': 'h1',
+    '2xl': 'h3',
+    xl: 'h4',
+    lg: 'h5',
     md: 'h6',
   }[props.size];
 });
 const size = computed(() => {
   return {
     '4xl': 'text-4xl',
+    '2xl': 'text-2xl',
+    xl: 'text-xl',
+    lg: 'text-lg',
     md: 'text-base',
   }[props.size];
 });

@@ -1,7 +1,7 @@
 <script setup>
 import BaseHeading from 'src/components/base/base-heading.vue';
 import BaseSectionHeading from 'src//components/base/base-section-heading.vue';
-import BaseCard from 'src/components/base/base-card.vue';
+import BaseHorizontalCard from 'src/components/base/base-horizontal-card.vue';
 import BasePagination from 'src/components/base/base-pagination.vue';
 import BaseInput from 'src/components/base/base-input.vue';
 import { useRequest } from 'src/composes/request.compose';
@@ -13,11 +13,15 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  hasHeading: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const route = useRoute();
 const router = useRouter();
-const { data: communities, request } = useRequest('/api/communities', {
+const { data: events, request } = useRequest('/api/events', {
   initData: {
     data: [],
     meta: {
@@ -40,7 +44,7 @@ function setRouteQuery() {
     },
   });
 }
-async function loadCommunities() {
+async function loadEvents() {
   try {
     await request({
       params: {
@@ -54,23 +58,23 @@ async function loadCommunities() {
 
 function handleChangePage() {
   setRouteQuery();
-  loadCommunities();
+  loadEvents();
 }
 function handleSearch() {
   params.page = 1;
 
   setRouteQuery();
-  loadCommunities();
+  loadEvents();
 }
 
-loadCommunities();
+loadEvents();
 </script>
 
 <template>
   <div class="space-y-6">
-    <base-section-heading>
+    <base-section-heading v-if="hasHeading">
       <template #start>
-        <base-heading size="md" weight="semibold">Top Komunitas</base-heading>
+        <base-heading size="md" weight="semibold">Event Terbaru</base-heading>
       </template>
       <template #end>
         <slot name="header-end">
@@ -88,28 +92,22 @@ loadCommunities();
         </slot>
       </template>
     </base-section-heading>
-    <p v-if="!communities.data.length" class="text-gray-700 text-sm">
+    <p v-if="!events.data.length" class="text-gray-700 text-sm">
       Data Tidak Ditemukan
     </p>
-    <div v-else class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <base-card
-        v-for="community in communities.data"
-        :key="community.id"
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-6">
+      <base-horizontal-card
+        v-for="event in events.data"
+        :key="event.id"
         subtitle="Sleman"
-        :title="community.name"
-        :description="community.description"
-        :image="community.image"
-        :to="{
-          name: 'communities.detail',
-          params: {
-            id: community.id,
-          },
-        }"
+        :title="event.name"
+        :description="event.description"
+        :image="event.image"
       />
     </div>
     <div v-if="hasPagination" class="flex justify-center">
       <base-pagination
-        :total="communities.meta.last_page"
+        :total="events.meta.last_page"
         v-model:page="params.page"
         v-on:change-page="handleChangePage"
       ></base-pagination>

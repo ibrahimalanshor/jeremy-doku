@@ -1,9 +1,13 @@
 <script setup>
+import BaseLink from './base-link.vue';
+import BaseHeading from './base-heading.vue';
+
 defineProps({
   subtitle: String,
   title: String,
   description: String,
   image: String,
+  to: null,
 });
 </script>
 
@@ -18,7 +22,11 @@ defineProps({
     </div>
     <div class="rounded-b-xl p-4">
       <p class="text-xs text-gray-500 mb-1">{{ subtitle }}</p>
-      <a href="" class="font-bold text-base block mb-2">{{ title }}</a>
+      <base-link :to="to" underlined>
+        <base-heading size="md" weight="semibold" class="mb-2">{{
+          title
+        }}</base-heading>
+      </base-link>
       <p class="text-sm text-gray-700 leading-6">{{ description }}</p>
     </div>
   </div>
