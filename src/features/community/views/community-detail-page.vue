@@ -1,9 +1,31 @@
 <script setup>
 import BaseContainer from 'src/components/base/base-container.vue';
+import BaseButton from 'src/components/base/base-button.vue';
 import BaseHeading from 'src/components/base/base-heading.vue';
 import LayoutLanding from 'src/components/layouts/layout-landing.vue';
 import BaseSectionHeading from 'src/components/base/base-section-heading.vue';
 import EventHorizontalCardList from 'src/features/event/components/event-horizontal-card-list.vue';
+import { useRequest } from 'src/composes/request.compose';
+import { useRoute } from 'vue-router';
+
+const { data: community, request } = useRequest('/communities', {
+  initData: {
+    data: {},
+  },
+});
+const route = useRoute();
+
+async function loadCommunity() {
+  try {
+    await request({
+      url: `/api/communities/${route.params.id}`,
+    });
+  } catch (err) {
+    //
+  }
+}
+
+loadCommunity();
 </script>
 
 <template>
@@ -13,26 +35,34 @@ import EventHorizontalCardList from 'src/features/event/components/event-horizon
         <template #start>
           <div class="flex gap-x-4">
             <img
-              src="https://images.pexels.com/photos/18980747/pexels-photo-18980747.jpeg?auto=compress&cs=tinysrgb&h=350"
+              :src="community.data.image"
               class="w-14 h-14 object-cover rounded-lg"
             />
             <div>
-              <span class="text-gray-500 text-xs">Sleman</span>
-              <base-heading size="xl" weight="bold"
-                >Romaguera, Kutch and Harris</base-heading
-              >
+              <span class="text-gray-500 text-xs">{{
+                community.data.location
+              }}</span>
+              <base-heading size="xl" weight="bold">{{
+                community.data.name
+              }}</base-heading>
             </div>
           </div>
         </template>
+        <template #end>
+          <router-link :to="{ name: 'communities.home' }">
+            <base-button size="md" color="white-bordered">Kembali</base-button>
+          </router-link>
+        </template>
       </base-section-heading>
       <p class="text-sm text-gray-700 leading-6">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores,
-        voluptas corporis officia esse suscipit a exercitationem aspernatur
-        itaque voluptate expedita, eligendi magnam repellat doloremque
-        accusantium atque possimus! Voluptates, et nulla!
+        {{ community.data.description }}
       </p>
       <base-heading size="md" weight="semibold">Event Terbaru</base-heading>
-      <event-horizontal-card-list :has-heading="false" />
+      <event-horizontal-card-list
+        v-if="community.data.id"
+        :has-heading="false"
+        :request-params="{ community_id: community.data.id }"
+      />
     </base-container>
   </layout-landing>
 </template>

@@ -8,7 +8,7 @@ import { useRequest } from 'src/composes/request.compose';
 import { reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
-defineProps({
+const props = defineProps({
   hasPagination: {
     type: Boolean,
     default: false,
@@ -16,6 +16,10 @@ defineProps({
   hasHeading: {
     type: Boolean,
     default: true,
+  },
+  requestParams: {
+    type: Object,
+    default: () => ({}),
   },
 });
 
@@ -51,6 +55,7 @@ async function loadEvents() {
         perPage: 6,
         page: params.page,
         search: params.search,
+        ...props.requestParams,
       },
     });
   } catch (err) {}
@@ -99,9 +104,11 @@ loadEvents();
       <base-horizontal-card
         v-for="event in events.data"
         :key="event.id"
-        subtitle="Sleman"
+        :subtitle="`Sabtu, 22 Mei 2024 - 07:00 WIB`"
         :title="event.name"
-        :description="event.description"
+        :description="`${event.type} - ${
+          event.type === 'offline' ? event.location : 'Zoom'
+        }`"
         :image="event.image"
       />
     </div>
