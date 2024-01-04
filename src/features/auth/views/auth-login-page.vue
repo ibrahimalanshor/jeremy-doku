@@ -7,20 +7,68 @@ import BaseInput from 'src/components/base/base-input.vue';
 import BaseFormControl from 'src/components/base/base-form-control.vue';
 import BaseButton from 'src/components/base/base-button.vue';
 import BaseLink from 'src/components/base/base-link.vue';
+import BaseAlert from 'src/components/base/base-alert.vue';
+import { useRequest } from 'src/composes/request.compose';
+import { reactive } from 'vue';
+
+const { request } = useRequest('/api/login', {
+  method: 'post',
+});
+
+const form = reactive({
+  email: null,
+  password: null,
+});
+const error = reactive({
+  visible: false,
+  message: '',
+});
+
+async function login() {
+  error.visible = false;
+
+  try {
+    await request({
+      data: form,
+    });
+  } catch (err) {
+    handleError(err);
+  }
+}
+
+function handleSubmit() {
+  login();
+}
+function handleError(err) {
+  if (err.response.status === 422) {
+    const schemaError = err.response.data.errors[0];
+
+    error.message = `${schemaError.field} ${schemaError.message}`;
+  } else if (err.response.status === 400) {
+    error.message = err.response.data.errors[0].message;
+  }
+
+  error.visible = true;
+}
 </script>
 
 <template>
   <layout-landing :has-header="false">
     <base-container class="pt-10 pb-20">
-      <div class="w-1/2 mx-auto space-y-6">
+      <div class="md:w-1/2 mx-auto space-y-6">
         <base-section-heading>
           <template #start>
             <base-heading size="md" weight="bold"
-              >Login to your community account</base-heading
+              >Login ke akun komunitas</base-heading
             >
           </template>
         </base-section-heading>
-        <form action="" class="space-y-4">
+        <form v-on:submit.prevent="handleSubmit" class="space-y-4">
+          <base-alert
+            v-if="error.visible"
+            :message="error.message"
+            color="red"
+          />
           <base-form-control label="Email">
             <base-input
               size="md"
@@ -28,6 +76,7 @@ import BaseLink from 'src/components/base/base-link.vue';
               outlined
               color="sky"
               placeholder="Email"
+              v-model="form.email"
             />
           </base-form-control>
           <base-form-control label="Password">
@@ -37,6 +86,7 @@ import BaseLink from 'src/components/base/base-link.vue';
               outlined
               color="sky"
               placeholder="Password"
+              v-model="form.password"
             />
           </base-form-control>
           <base-button size="md" color="sky" fullwidth>Login</base-button>
