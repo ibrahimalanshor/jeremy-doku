@@ -4,6 +4,10 @@ defineProps({
   title: String,
   description: String,
   image: String,
+  hasSubtitle: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 
@@ -19,9 +23,13 @@ defineProps({
       />
     </div>
     <div class="rounded-b-xl p-4">
-      <p class="text-xs text-gray-500 mb-1">{{ subtitle }}</p>
+      <p v-if="hasSubtitle" class="text-xs text-gray-500 mb-1">
+        {{ subtitle }}
+      </p>
       <a href="" class="font-bold text-base block mb-2">{{ title }}</a>
-      <p class="text-sm text-gray-700 leading-6">{{ description }}</p>
+      <slot name="description">
+        <p class="text-sm text-gray-700 leading-6">{{ description }}</p>
+      </slot>
     </div>
   </div>
 </template>

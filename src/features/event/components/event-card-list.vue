@@ -7,6 +7,8 @@ import BaseInput from 'src/components/base/base-input.vue';
 import { useRequest } from 'src/composes/request.compose';
 import { reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { createDate } from 'src/utils/date';
+import { CalendarDaysIcon, MapPinIcon } from '@heroicons/vue/24/outline';
 
 defineProps({
   hasPagination: {
@@ -96,19 +98,25 @@ loadEvents();
       <base-card
         v-for="event in events.data"
         :key="event.id"
-        subtitle="Sabtu, 22 Mei 2024"
+        :subtitle="event.community.name"
         :title="event.name"
         :image="event.image"
-        :has-description="false"
       >
-        <template #subtitle="{ classes }">
-          <p :class="classes.subtitle">
-            {{ 'Sabtu, 22 Mei 2024 - 07:00 WIB' }}
-          </p>
-          <p :class="classes.subtitle">
-            {{ event.type }} - {{ event.location ?? 'Zoom' }}
-          </p>
-          <p :class="classes.subtitle">{{ event.community.name }}</p>
+        <template #description>
+          <div class="text-gray-700 text-sm space-y-1">
+            <li class="flex items-center">
+              <div class="w-6">
+                <CalendarDaysIcon class="w-4 h-4" />
+              </div>
+              {{ createDate(event.date).format('LLL') }}
+            </li>
+            <li class="flex items-center">
+              <div class="w-6">
+                <MapPinIcon class="w-4 h-4" />
+              </div>
+              {{ event.type === 'offline' ? event.location : event.platform }}
+            </li>
+          </div>
         </template>
       </base-card>
     </div>

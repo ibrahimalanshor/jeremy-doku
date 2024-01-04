@@ -12,6 +12,10 @@ defineProps({
     type: Boolean,
     default: true,
   },
+  hasSubtitle: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const subtitleClasses = 'text-xs text-gray-500 mb-1';
@@ -27,7 +31,11 @@ const subtitleClasses = 'text-xs text-gray-500 mb-1';
       />
     </div>
     <div class="rounded-b-xl p-4">
-      <slot name="subtitle" :classes="{ subtitle: subtitleClasses }">
+      <slot
+        v-if="hasSubtitle"
+        name="subtitle"
+        :classes="{ subtitle: subtitleClasses }"
+      >
         <p :class="subtitleClasses">{{ subtitle }}</p>
       </slot>
       <base-link :to="to" underlined>
@@ -38,9 +46,11 @@ const subtitleClasses = 'text-xs text-gray-500 mb-1';
           >{{ title }}</base-heading
         >
       </base-link>
-      <p v-if="hasDescription" class="text-sm text-gray-700 leading-6">
-        {{ description }}
-      </p>
+      <slot name="description" :classes="{ subtitle: subtitleClasses }">
+        <p v-if="hasDescription" class="text-sm text-gray-700 leading-6">
+          {{ description }}
+        </p>
+      </slot>
     </div>
   </div>
 </template>
