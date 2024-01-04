@@ -15,7 +15,7 @@ const props = defineProps({
     :has-header="hasHeader"
     :navs="[
       { id: 'comunities', name: 'Komunitas', to: { name: 'communities.home' } },
-      { id: 'events', name: 'Events' },
+      { id: 'events', name: 'Events', to: { name: 'events.home' } },
       { id: 'login', name: 'Masuk / Daftar' },
     ]"
   />

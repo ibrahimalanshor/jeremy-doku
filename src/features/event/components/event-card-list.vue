@@ -17,7 +17,7 @@ defineProps({
 
 const route = useRoute();
 const router = useRouter();
-const { data: communities, request } = useRequest('/api/communities', {
+const { data: events, request } = useRequest('/api/events', {
   initData: {
     data: [],
     meta: {
@@ -40,7 +40,7 @@ function setRouteQuery() {
     },
   });
 }
-async function loadCommunities() {
+async function loadEvents() {
   try {
     await request({
       params: {
@@ -54,23 +54,23 @@ async function loadCommunities() {
 
 function handleChangePage() {
   setRouteQuery();
-  loadCommunities();
+  loadEvents();
 }
 function handleSearch() {
   params.page = 1;
 
   setRouteQuery();
-  loadCommunities();
+  loadEvents();
 }
 
-loadCommunities();
+loadEvents();
 </script>
 
 <template>
   <div class="space-y-6">
     <base-section-heading>
       <template #start>
-        <base-heading size="md" weight="semibold">Top Komunitas</base-heading>
+        <base-heading size="md" weight="semibold">Event Terbaru</base-heading>
       </template>
       <template #end>
         <slot name="header-end">
@@ -90,17 +90,17 @@ loadCommunities();
     </base-section-heading>
     <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
       <base-card
-        v-for="community in communities.data"
-        :key="community.id"
+        v-for="event in events.data"
+        :key="event.id"
         subtitle="Sleman"
-        :title="community.name"
-        :description="community.description"
-        :image="community.image"
+        :title="event.name"
+        :description="event.description"
+        :image="event.image"
       />
     </div>
     <div v-if="hasPagination" class="flex justify-center">
       <base-pagination
-        :total="communities.meta.last_page"
+        :total="events.meta.last_page"
         v-model:page="params.page"
         v-on:change-page="handleChangePage"
       ></base-pagination>

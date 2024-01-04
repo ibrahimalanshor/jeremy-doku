@@ -15,4 +15,14 @@ export const routes = [
       },
     ],
   },
+  {
+    path: '/events',
+    children: [
+      {
+        path: '',
+        name: 'events.home',
+        component: () => import('src/features/event/views/event-home-page.vue'),
+      },
+    ],
+  },
 ];
