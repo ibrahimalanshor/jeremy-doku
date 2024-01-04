@@ -37,4 +37,9 @@ export const routes = [
       },
     ],
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('src/features/auth/views/auth-login-page.vue'),
+  },
 ];

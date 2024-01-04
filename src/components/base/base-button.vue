@@ -4,6 +4,7 @@ import { computed } from 'vue';
 const props = defineProps({
   size: String,
   color: String,
+  fullwidth: Boolean,
 });
 
 const size = computed(() => {
@@ -14,13 +15,14 @@ const size = computed(() => {
 const color = computed(() => {
   return {
     'white-bordered':
-      'border border-gray-200 border border-gray-200 bg-white text-gray-900',
+      'border border-gray-200 border-gray-200 bg-white text-gray-900',
+    sky: 'border border-sky-600 bg-sky-600 text-white',
   }[props.color];
 });
 </script>
 
 <template>
-  <button :class="[size, color]">
+  <button :class="[size, color, fullwidth && 'w-full']">
     <slot />
   </button>
 </template>
