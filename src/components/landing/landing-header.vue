@@ -3,6 +3,21 @@ import BaseContainer from 'src/components/base/base-container.vue';
 import BaseHeading from 'src/components/base/base-heading.vue';
 import BaseInput from 'src/components/base/base-input.vue';
 import BaseLink from 'src/components/base/base-link.vue';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const search = ref(null);
+
+function handleSearch() {
+  router.push({
+    name: 'communities.home',
+    query: {
+      search: search.value,
+    },
+  });
+}
 </script>
 
 <template>
@@ -15,8 +30,17 @@ import BaseLink from 'src/components/base/base-link.vue';
         <p class="text-base mb-4">
           Bersama memanfaatkan air hujan menjadi sesuatu yang lebih bermanfaat
         </p>
-        <base-input class="mb-2" size="lg" placeholder="Cari Komunitas" />
-        <base-link size="xs">Lihat Semua Komunias</base-link>
+        <form v-on:submit.prevent="handleSearch">
+          <base-input
+            class="mb-2"
+            size="lg"
+            placeholder="Cari Komunitas"
+            v-model="search"
+          />
+        </form>
+        <base-link size="xs" :to="{ name: 'communities.home' }"
+          >Lihat Semua Komunias</base-link
+        >
       </div>
     </base-container>
   </header>

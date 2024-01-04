@@ -88,7 +88,10 @@ loadEvents();
         </slot>
       </template>
     </base-section-heading>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <p v-if="!events.data.length" class="text-gray-700 text-sm">
+      Data Tidak Ditemukan
+    </p>
+    <div v-else class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
       <base-card
         v-for="event in events.data"
         :key="event.id"
