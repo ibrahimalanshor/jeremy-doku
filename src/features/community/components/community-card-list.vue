@@ -70,7 +70,9 @@ loadCommunities();
   <div class="space-y-6">
     <base-section-heading>
       <template #start>
-        <base-heading size="md" weight="semibold">Top Komunitas</base-heading>
+        <base-heading size="md" weight="semibold"
+          >Komunitas Terbaru</base-heading
+        >
       </template>
       <template #end>
         <slot name="header-end">

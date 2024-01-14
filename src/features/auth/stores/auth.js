@@ -9,12 +9,14 @@ export const useAuthStore = defineStore(
     const me = ref(null);
 
     function login(payload) {
-      token.value = payload.token;
-      me.value = payload.me;
+      token.value = payload;
       isLoggedIn.value = true;
     }
+    function setMe(payload) {
+      me.value = payload;
+    }
 
-    return { isLoggedIn, token, me, login };
+    return { isLoggedIn, token, me, login, setMe };
   },
   { persist: true },
 );

@@ -22,7 +22,7 @@ const authStore = useAuthStore();
       {
         id: 'login',
         name: authStore.isLoggedIn ? 'Dashboard Komunitas' : 'Masuk / Daftar',
-        to: { name: 'login' },
+        to: { name: authStore.isLoggedIn ? 'admin.dashboard' : 'login' },
       },
     ]"
   />

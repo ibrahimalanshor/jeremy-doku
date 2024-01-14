@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
   size: String,
@@ -7,6 +7,7 @@ const props = defineProps({
   bordered: Boolean,
   color: String,
   outlined: Boolean,
+  textarea: Boolean,
   modelValue: String,
   type: {
     type: String,
@@ -15,6 +16,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['input', 'update:modelValue']);
 
+const input = ref(null);
 const value = computed({
   get() {
     return props.modelValue;
@@ -35,21 +37,40 @@ const focusColor = computed(() => {
   }[props.color];
 });
 
+const params = computed(() => {
+  return {
+    class: [
+      size.value,
+      'w-full text-gray-700',
+      props.outlined
+        ? focusColor.value
+        : 'border-0 focus:outline-0 focus:ring-0',
+      props.bordered && 'border border-gray-300',
+    ],
+    placeholder: props.placeholder,
+  };
+});
+
 function handleInput() {
   emit('input');
 }
+
+defineExpose({ input });
 </script>
 
 <template>
+  <textarea
+    v-if="textarea"
+    v-bind="params"
+    rows="4"
+    v-model="value"
+    v-on:input="handleInput"
+  ></textarea>
   <input
+    v-else
+    ref="input"
     :type="type"
-    :class="[
-      size,
-      'w-full text-gray-700',
-      outlined ? focusColor : 'border-0 focus:outline-0 focus:ring-0',
-      bordered && 'border border-gray-300',
-    ]"
-    :placeholder="placeholder"
+    v-bind="params"
     v-model="value"
     v-on:input="handleInput"
   />

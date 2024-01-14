@@ -11,11 +11,17 @@ import BaseAlert from 'src/components/base/base-alert.vue';
 import { useRequest } from 'src/composes/request.compose';
 import { reactive } from 'vue';
 import { useAuthStore } from 'src/features/auth/stores/auth';
+import { useRouter } from 'vue-router';
 
-const { request, data: result } = useRequest('/api/register', {
-  method: 'post',
-});
+const { request: requestLogin, data: loginResult } = useRequest(
+  '/api/register',
+  {
+    method: 'post',
+  },
+);
+const { request: requestMe, data: meResult } = useRequest('/api/me');
 const authStore = useAuthStore();
+const router = useRouter();
 
 const form = reactive({
   name: null,
@@ -31,11 +37,17 @@ async function login() {
   error.visible = false;
 
   try {
-    await request({
+    await requestLogin({
       data: form,
     });
 
-    authStore.login(result.value);
+    authStore.login(loginResult.value.token);
+
+    await requestMe();
+
+    authStore.setMe(meResult.value.data);
+
+    router.push({ name: 'admin.dashboard' });
   } catch (err) {
     handleError(err);
   }
